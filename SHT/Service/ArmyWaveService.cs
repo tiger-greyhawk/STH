@@ -17,5 +17,16 @@ namespace SHT.Service
             return armyWaves;
         }
 
+        public void AddOne(ArmyWave armyWave)
+        {
+            armyWaves.Add(armyWave);
+        }
+
+        public void SetArmyWave(int number, ArmyWave item)
+        {
+            armyWaves.RemoveAt(number);
+            armyWaves.Insert(number, item);
+
+        }
     }
 }

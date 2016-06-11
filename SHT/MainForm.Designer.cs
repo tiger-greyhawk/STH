@@ -38,13 +38,14 @@
             this.timeLeft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timeCalculationTimer = new System.Windows.Forms.Timer(this.components);
             this.attackTimeLabel = new System.Windows.Forms.Label();
+            this.startButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // targetTime
             // 
             this.targetTime.CustomFormat = "HH\':\'mm\':\'ss  dd\'.\'MM\'.\'yyyy";
             this.targetTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.targetTime.Location = new System.Drawing.Point(95, 12);
+            this.targetTime.Location = new System.Drawing.Point(403, 5);
             this.targetTime.Name = "targetTime";
             this.targetTime.Size = new System.Drawing.Size(129, 20);
             this.targetTime.TabIndex = 1;
@@ -61,9 +62,9 @@
             this.multiplier,
             this.name,
             this.timeLeft});
-            this.armyWavesListView.Location = new System.Drawing.Point(12, 38);
+            this.armyWavesListView.Location = new System.Drawing.Point(12, 199);
             this.armyWavesListView.Name = "armyWavesListView";
-            this.armyWavesListView.Size = new System.Drawing.Size(778, 423);
+            this.armyWavesListView.Size = new System.Drawing.Size(778, 262);
             this.armyWavesListView.TabIndex = 2;
             this.armyWavesListView.UseCompatibleStateImageBehavior = false;
             this.armyWavesListView.View = System.Windows.Forms.View.Details;
@@ -96,17 +97,28 @@
             // attackTimeLabel
             // 
             this.attackTimeLabel.AutoSize = true;
-            this.attackTimeLabel.Location = new System.Drawing.Point(12, 12);
+            this.attackTimeLabel.Location = new System.Drawing.Point(333, 5);
             this.attackTimeLabel.Name = "attackTimeLabel";
             this.attackTimeLabel.Size = new System.Drawing.Size(64, 13);
             this.attackTimeLabel.TabIndex = 3;
             this.attackTimeLabel.Text = "Attack Time";
+            // 
+            // startButton
+            // 
+            this.startButton.Location = new System.Drawing.Point(585, 9);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(75, 23);
+            this.startButton.TabIndex = 4;
+            this.startButton.Text = "button1";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 473);
+            this.Controls.Add(this.startButton);
             this.Controls.Add(this.attackTimeLabel);
             this.Controls.Add(this.armyWavesListView);
             this.Controls.Add(this.targetTime);
@@ -128,6 +140,7 @@
         private System.Windows.Forms.ColumnHeader timeLeft;
         private System.Windows.Forms.Timer timeCalculationTimer;
         private System.Windows.Forms.Label attackTimeLabel;
+        private System.Windows.Forms.Button startButton;
     }
 }
 

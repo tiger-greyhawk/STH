@@ -21,7 +21,8 @@ namespace SHT
         {
             armyWavesListView.DoubleBuffering(true);
             populateListView(armyWavesListView, new List<ArmyWave>(armyWaveService.FindAll()));
-            timeCalculationTimer.Enabled = true;
+            populateEditArmy(new List<ArmyWave>(armyWaveService.FindAll()));
+            //timeCalculationTimer.Enabled = true;
         }
 
         private void timeCalculationTimer_Tick(object sender, EventArgs e)
@@ -42,6 +43,45 @@ namespace SHT
                 listViewItem.SubItems.Add(new ListViewItem.ListViewSubItem(listViewItem, armyWave.Name));
                 listViewItem.SubItems.Add(new ListViewItem.ListViewSubItem(listViewItem, "------"));
                 listView.Items.Add(listViewItem);
+            }
+        }
+
+        private void populateEditArmy(List<ArmyWave> armyWaves)
+        {
+            int j = 0;
+            foreach(ArmyWave armyWave in armyWaves)
+            {
+                MaskedTextBox timeArmy = new MaskedTextBox();
+                ComboBox cardArmy = new ComboBox();
+                TextBox commentArmy = new TextBox();
+                timeArmy.Width = 50;
+                timeArmy.Left = 10;
+                timeArmy.Top = 10 + j * 25;
+                timeArmy.Mask = "00:00:00";
+                timeArmy.Text = armyWave.TravelTime;
+                timeArmy.Tag = Convert.ToString(j);
+                timeArmy.Leave += new EventHandler(timeArmy_Leave);
+                //this.timeArmy.Leave += new EventHandler(maskedTextBox1_Leave);
+                for (int i = 1; i < 7; i++)
+                {
+                    cardArmy.Items.Add("X" + i);
+                }
+                cardArmy.SelectedIndex = 0;
+                cardArmy.Width = 40;
+                cardArmy.Left = 70;
+                cardArmy.Top = 10 + j * 25;
+                cardArmy.SelectedIndex = armyWave.GetMultiplier()-1;
+                cardArmy.Tag = Convert.ToString(j);
+
+                commentArmy.Width = 100;
+                commentArmy.Left = 120;
+                commentArmy.Top = 10 + j * 25;
+                commentArmy.Text = armyWave.Name;
+                commentArmy.Tag = Convert.ToString(j);
+                this.Controls.Add(timeArmy);
+                this.Controls.Add(cardArmy);
+                this.Controls.Add(commentArmy);
+                j++;
             }
         }
 
@@ -80,5 +120,27 @@ namespace SHT
             }
         }
 
+        private void timeArmy_Leave(object sender, EventArgs e)
+        {
+            armyWaveService.SetArmyWave(Convert.ToInt32((sender as MaskedTextBox).Tag), new ArmyWave(3, TimeToLong((sender as MaskedTextBox).Text), 2, "Goodies"));
+            populateListView(armyWavesListView, new List<ArmyWave>(armyWaveService.FindAll()));
+            
+        }
+
+        private long TimeToLong(string time)
+        {
+            DateTime temp = Convert.ToDateTime(time);
+            long time1 = temp.Millisecond + temp.Second * 1000 + temp.Minute * 60 * 1000 + temp.Hour * 60 * 60 * 1000;
+
+            
+            //temp = temp.
+            return time1;
+            //return temp.Ticks;
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            timeCalculationTimer.Enabled = true;
+        }
     }
 }
