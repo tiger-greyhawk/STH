@@ -1,4 +1,5 @@
-﻿using SHT.Dto;
+﻿using SHT.Asset;
+using SHT.Dto;
 using SHT.Service;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,12 @@ namespace SHT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            armyWavesListView.DoubleBuffering(true);
-            populateListView(armyWavesListView, new List<ArmyWave>(armyWaveService.FindAll()));
+            foreach (ArmyWave armyWave in armyWaveService.FindAll()) {
+                ArmyWaveControl armyWaveControl = new ArmyWaveControl(armyWave);
+                armyWavesFlowLayoutPanel.Controls.Add(armyWaveControl);
+            }
             timeCalculationTimer.Enabled = true;
+            
         }
 
         private void timeCalculationTimer_Tick(object sender, EventArgs e)
@@ -29,27 +33,11 @@ namespace SHT
             UpdateTiming();
         }
 
-
-        private void populateListView(ListView listView, List<ArmyWave> armyWaves)
-        {
-            listView.Items.Clear();
-            foreach (ArmyWave armyWave in armyWaves)
-            {
-                ListViewItem listViewItem = new ListViewItem(armyWave.Id);
-                listViewItem.Tag = armyWave;
-                listViewItem.SubItems.Add(new ListViewItem.ListViewSubItem(listViewItem, armyWave.TravelTime));
-                listViewItem.SubItems.Add(new ListViewItem.ListViewSubItem(listViewItem, armyWave.Multiplier));
-                listViewItem.SubItems.Add(new ListViewItem.ListViewSubItem(listViewItem, armyWave.Name));
-                listViewItem.SubItems.Add(new ListViewItem.ListViewSubItem(listViewItem, "------"));
-                listView.Items.Add(listViewItem);
-            }
-        }
-
         delegate void UpdateTimingCallback();
 
         private void UpdateTiming()
         {
-            if (armyWavesListView.InvokeRequired)
+            if (armyWavesFlowLayoutPanel.InvokeRequired)
             {
                 UpdateTimingCallback updateTimingCallback = new UpdateTimingCallback(UpdateTiming);
                 this.Invoke(updateTimingCallback);
@@ -57,26 +45,12 @@ namespace SHT
             else
             {
                 long targetTimeTicks = targetTime.Value.Ticks - DateTime.Now.Ticks;
-                armyWavesListView.BeginUpdate();
-                foreach (ListViewItem armyWavesListViewItem in armyWavesListView.Items)
+                foreach (ArmyWaveControl armyWaveControl in armyWavesFlowLayoutPanel.Controls)
                 {
-                    ArmyWave armyWave = (ArmyWave)armyWavesListViewItem.Tag;
+                    ArmyWave armyWave = armyWaveControl.ArmyWave;
                     TimeSpan timeLeft = new TimeSpan(targetTimeTicks - (armyWave.GetTravelTime() * 10000) / armyWave.GetMultiplier());
-                    armyWavesListViewItem.SubItems[4].Text = timeLeft.ToString();
-                    if (Math.Abs(timeLeft.Ticks) <= 100000000)
-                    {
-                        armyWavesListViewItem.BackColor = Color.Green;
-                    }
-                    else if (timeLeft.Ticks < 0)
-                    {
-                        armyWavesListViewItem.BackColor = Color.LightSalmon;
-                    }
-                    else
-                    {
-                        armyWavesListViewItem.BackColor = Color.LightGreen;
-                    }
+                    armyWaveControl.SetTimeLeft(timeLeft.Ticks);
                 }
-                armyWavesListView.EndUpdate();
             }
         }
 
