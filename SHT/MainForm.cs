@@ -30,27 +30,19 @@ namespace SHT
 
         private void timeCalculationTimer_Tick(object sender, EventArgs e)
         {
-            UpdateTiming();
+            new UpdateTimingCallback(UpdateTiming).Invoke();
         }
 
         delegate void UpdateTimingCallback();
 
         private void UpdateTiming()
         {
-            if (armyWavesFlowLayoutPanel.InvokeRequired)
+            long targetTimeTicks = targetTime.Value.Ticks - DateTime.Now.Ticks;
+            foreach (ArmyWaveControl armyWaveControl in armyWavesFlowLayoutPanel.Controls)
             {
-                UpdateTimingCallback updateTimingCallback = new UpdateTimingCallback(UpdateTiming);
-                this.Invoke(updateTimingCallback);
-            }
-            else
-            {
-                long targetTimeTicks = targetTime.Value.Ticks - DateTime.Now.Ticks;
-                foreach (ArmyWaveControl armyWaveControl in armyWavesFlowLayoutPanel.Controls)
-                {
-                    ArmyWave armyWave = armyWaveControl.ArmyWave;
-                    TimeSpan timeLeft = new TimeSpan(targetTimeTicks - (armyWave.GetTravelTime() * 10000) / armyWave.GetMultiplier());
-                    armyWaveControl.SetTimeLeft(timeLeft.Ticks);
-                }
+                ArmyWave armyWave = armyWaveControl.ArmyWave;
+                TimeSpan timeLeft = new TimeSpan(targetTimeTicks - (armyWave.GetTravelTime() * 10000) / armyWave.GetMultiplier());
+                armyWaveControl.SetTimeLeft(timeLeft.Ticks);
             }
         }
 

@@ -22,6 +22,14 @@ namespace SHT.Asset
         public void SetTimeLeft(long ticks)
         {
             timeLeft.Text = (ticks < 0 ? "-" : "") + new TimeSpan(ticks).ToString(@"dd\.hh\:mm\:ss");
+            if (ticks < 0)
+            {
+                timeLeft.ForeColor = System.Drawing.Color.Red;
+            }
+            else
+            {
+                timeLeft.ForeColor = System.Drawing.Color.Black;
+            }
         }
 
         /// <summary>
