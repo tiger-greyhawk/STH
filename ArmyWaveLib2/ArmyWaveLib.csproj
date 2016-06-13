@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D42CFAB-2536-474D-8E00-EEEE3D35DDE2}</ProjectGuid>
+    <ProjectGuid>{900A765C-9D6F-44A2-84E9-86B74F352B32}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ArmyWaveLib</RootNamespace>
