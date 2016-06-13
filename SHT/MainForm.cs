@@ -55,8 +55,10 @@ namespace SHT
                 ArmyWaveControl armyWaveControl = new ArmyWaveControl();
                 armyWaveControl.ArmyTime = armyWave.TravelTime;
                 armyWaveControl.ArmyCard = armyWave.Multiplier;
+                //armyWaveControl.ArmyCard = "X1";
                 armyWaveControl.ArmyComment = armyWave.Name;
                 armyWaveControl.Top = 10 + j * 25;
+                armyWaveControl.Tag = armyWave;
                 this.Controls.Add(armyWaveControl);
                 /*                MaskedTextBox timeArmy = new MaskedTextBox();
                                 ComboBox cardArmy = new ComboBox();
@@ -149,8 +151,13 @@ namespace SHT
         private void startButton_Click(object sender, EventArgs e)
         {
             timeCalculationTimer.Enabled = true;
+            //armyWaveService.SetArmyWave(0, armyWaveService);
             
-            
+        }
+
+        private void armyWaveControl1_Leave(object sender, EventArgs e)
+        {
+            populateListView(armyWavesListView, new List<ArmyWave>(armyWaveService.FindAll()));
         }
     }
 }

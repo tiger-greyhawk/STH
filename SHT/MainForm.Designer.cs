@@ -39,6 +39,7 @@
             this.timeCalculationTimer = new System.Windows.Forms.Timer(this.components);
             this.attackTimeLabel = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
+            this.armyWaveControl1 = new ArmyWaveLib.ArmyWaveControl();
             this.SuspendLayout();
             // 
             // targetTime
@@ -113,11 +114,23 @@
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // armyWaveControl1
+            // 
+            this.armyWaveControl1.ArmyCard = "0";
+            this.armyWaveControl1.ArmyComment = null;
+            this.armyWaveControl1.ArmyTime = null;
+            this.armyWaveControl1.Location = new System.Drawing.Point(403, 56);
+            this.armyWaveControl1.Name = "armyWaveControl1";
+            this.armyWaveControl1.Size = new System.Drawing.Size(264, 27);
+            this.armyWaveControl1.TabIndex = 5;
+            this.armyWaveControl1.Leave += new System.EventHandler(this.armyWaveControl1_Leave);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 473);
+            this.Controls.Add(this.armyWaveControl1);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.attackTimeLabel);
             this.Controls.Add(this.armyWavesListView);
@@ -141,6 +154,7 @@
         private System.Windows.Forms.Timer timeCalculationTimer;
         private System.Windows.Forms.Label attackTimeLabel;
         private System.Windows.Forms.Button startButton;
+        private ArmyWaveLib.ArmyWaveControl armyWaveControl1;
     }
 }
 
