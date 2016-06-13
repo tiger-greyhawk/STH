@@ -40,7 +40,6 @@
             this.armyTime.Name = "armyTime";
             this.armyTime.Size = new System.Drawing.Size(51, 20);
             this.armyTime.TabIndex = 0;
-            this.armyTime.Leave += new System.EventHandler(this.armyTime_Leave);
             // 
             // armyCard
             // 
@@ -48,24 +47,24 @@
             this.armyCard.FormattingEnabled = true;
             this.armyCard.Location = new System.Drawing.Point(60, 3);
             this.armyCard.Name = "armyCard";
-            this.armyCard.Size = new System.Drawing.Size(42, 21);
+            this.armyCard.Size = new System.Drawing.Size(32, 21);
             this.armyCard.TabIndex = 1;
             // 
             // armyComment
             // 
-            this.armyComment.Location = new System.Drawing.Point(108, 3);
+            this.armyComment.Location = new System.Drawing.Point(98, 3);
             this.armyComment.Name = "armyComment";
-            this.armyComment.Size = new System.Drawing.Size(152, 20);
+            this.armyComment.Size = new System.Drawing.Size(162, 20);
             this.armyComment.TabIndex = 2;
             // 
-            // ArmyWaveControl
+            // ArmyWave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.armyComment);
             this.Controls.Add(this.armyCard);
             this.Controls.Add(this.armyTime);
-            this.Name = "ArmyWaveControl";
+            this.Name = "ArmyWave";
             this.Size = new System.Drawing.Size(264, 27);
             this.ResumeLayout(false);
             this.PerformLayout();
