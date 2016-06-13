@@ -16,19 +16,7 @@ namespace ArmyWaveLib
         private string armyCommentText;
         public ArmyWaveControl()
         {
-            
             InitializeComponent();
-            Init();
-        }
-
-        private void Init()
-        {
-            for (int i = 1; i < 7; i++)
-            {
-                //ArmyCard = ("X" + i);
-                armyCard.Items.Add(Convert.ToString(i));
-            }
-            armyCard.SelectedIndex = 0;
         }
 
         public string ArmyTime
@@ -49,17 +37,12 @@ namespace ArmyWaveLib
         {
             get
             {
-                //return armyCardText;
-                return Convert.ToString(armyCard.SelectedIndex + 1);
+                return armyCardText;
             }
             set
             {
                 armyCardText = value;
-            //    if (armyCard.SelectedIndex != -1)
-                armyCard.SelectedIndex = Convert.ToInt32(armyCardText)-1;
-                //armyCard.Items.Add(armyCardText);
-                //armyCard.Items.Add(armyCardText);
-                //armyCard.Text = (armyCardText);
+                armyCard.Text = armyCardText;
             }
 
         }
@@ -76,11 +59,6 @@ namespace ArmyWaveLib
                 armyComment.Text = armyCommentText;
             }
 
-        }
-
-        protected virtual void armyTime_Leave(object sender, EventArgs e)
-        {
-            armyTimeText = armyTime.Text;
         }
     }
 }
