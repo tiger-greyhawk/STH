@@ -30,65 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             this.targetTime = new System.Windows.Forms.DateTimePicker();
-            this.armyWavesListView = new System.Windows.Forms.ListView();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.multiplier = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.timeLeft = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timeCalculationTimer = new System.Windows.Forms.Timer(this.components);
             this.attackTimeLabel = new System.Windows.Forms.Label();
-            this.startButton = new System.Windows.Forms.Button();
-            this.armyWaveControl1 = new ArmyWaveLib.ArmyWaveControl();
+            this.armyWavesFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // targetTime
             // 
             this.targetTime.CustomFormat = "HH\':\'mm\':\'ss  dd\'.\'MM\'.\'yyyy";
             this.targetTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.targetTime.Location = new System.Drawing.Point(403, 5);
+            this.targetTime.Location = new System.Drawing.Point(95, 12);
             this.targetTime.Name = "targetTime";
             this.targetTime.Size = new System.Drawing.Size(129, 20);
             this.targetTime.TabIndex = 1;
-            // 
-            // armyWavesListView
-            // 
-            this.armyWavesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.armyWavesListView.CausesValidation = false;
-            this.armyWavesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.time,
-            this.multiplier,
-            this.name,
-            this.timeLeft});
-            this.armyWavesListView.Location = new System.Drawing.Point(12, 199);
-            this.armyWavesListView.Name = "armyWavesListView";
-            this.armyWavesListView.Size = new System.Drawing.Size(778, 262);
-            this.armyWavesListView.TabIndex = 2;
-            this.armyWavesListView.UseCompatibleStateImageBehavior = false;
-            this.armyWavesListView.View = System.Windows.Forms.View.Details;
-            // 
-            // id
-            // 
-            this.id.Text = "Id";
-            // 
-            // time
-            // 
-            this.time.Text = "Time";
-            // 
-            // multiplier
-            // 
-            this.multiplier.Text = "multiplier";
-            // 
-            // name
-            // 
-            this.name.Text = "name";
-            // 
-            // timeLeft
-            // 
-            this.timeLeft.Text = "Time Left";
             // 
             // timeCalculationTimer
             // 
@@ -98,42 +52,30 @@
             // attackTimeLabel
             // 
             this.attackTimeLabel.AutoSize = true;
-            this.attackTimeLabel.Location = new System.Drawing.Point(333, 5);
+            this.attackTimeLabel.Location = new System.Drawing.Point(12, 12);
             this.attackTimeLabel.Name = "attackTimeLabel";
             this.attackTimeLabel.Size = new System.Drawing.Size(64, 13);
             this.attackTimeLabel.TabIndex = 3;
             this.attackTimeLabel.Text = "Attack Time";
             // 
-            // startButton
+            // armyWavesFlowLayoutPanel
             // 
-            this.startButton.Location = new System.Drawing.Point(585, 9);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(75, 23);
-            this.startButton.TabIndex = 4;
-            this.startButton.Text = "button1";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // armyWaveControl1
-            // 
-            this.armyWaveControl1.ArmyCard = "0";
-            this.armyWaveControl1.ArmyComment = null;
-            this.armyWaveControl1.ArmyTime = null;
-            this.armyWaveControl1.Location = new System.Drawing.Point(403, 56);
-            this.armyWaveControl1.Name = "armyWaveControl1";
-            this.armyWaveControl1.Size = new System.Drawing.Size(264, 27);
-            this.armyWaveControl1.TabIndex = 5;
-            this.armyWaveControl1.Leave += new System.EventHandler(this.armyWaveControl1_Leave);
+            this.armyWavesFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.armyWavesFlowLayoutPanel.AutoScroll = true;
+            this.armyWavesFlowLayoutPanel.Location = new System.Drawing.Point(12, 38);
+            this.armyWavesFlowLayoutPanel.Name = "armyWavesFlowLayoutPanel";
+            this.armyWavesFlowLayoutPanel.Size = new System.Drawing.Size(778, 423);
+            this.armyWavesFlowLayoutPanel.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 473);
-            this.Controls.Add(this.armyWaveControl1);
-            this.Controls.Add(this.startButton);
+            this.Controls.Add(this.armyWavesFlowLayoutPanel);
             this.Controls.Add(this.attackTimeLabel);
-            this.Controls.Add(this.armyWavesListView);
             this.Controls.Add(this.targetTime);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -145,16 +87,9 @@
 
         #endregion
         private System.Windows.Forms.DateTimePicker targetTime;
-        private System.Windows.Forms.ListView armyWavesListView;
-        private System.Windows.Forms.ColumnHeader id;
-        private System.Windows.Forms.ColumnHeader time;
-        private System.Windows.Forms.ColumnHeader multiplier;
-        private System.Windows.Forms.ColumnHeader name;
-        private System.Windows.Forms.ColumnHeader timeLeft;
         private System.Windows.Forms.Timer timeCalculationTimer;
         private System.Windows.Forms.Label attackTimeLabel;
-        private System.Windows.Forms.Button startButton;
-        private ArmyWaveLib.ArmyWaveControl armyWaveControl1;
+        private System.Windows.Forms.FlowLayoutPanel armyWavesFlowLayoutPanel;
     }
 }
 
